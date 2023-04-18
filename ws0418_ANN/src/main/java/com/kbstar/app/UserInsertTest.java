@@ -11,11 +11,11 @@ public class UserInsertTest {
                 new ClassPathXmlApplicationContext("spring.xml");
 
         MyService<String, ProductDTO> service =
-                (MyService<String, ProductDTO>)  factory.getBean("uservice");
-
+                (MyService<String, ProductDTO>)  factory.getBean("pservice");
 
         ProductDTO u = new ProductDTO("id01", "pencil",1000, 10);
         service.register(u);
+
     }
 
 }
