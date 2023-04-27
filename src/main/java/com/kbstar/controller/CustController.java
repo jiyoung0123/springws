@@ -1,9 +1,11 @@
 package com.kbstar.controller;
 
 import com.kbstar.dto.Cust;
+import com.kbstar.service.CustService;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +20,9 @@ import java.util.Random;
 public class CustController {
     Logger logger = LoggerFactory.getLogger(this.getClass().getSimpleName());
     String dir = "cust/";
+
+    @Autowired
+    CustService service;
 
 //맨 위에 requestMapping 에 /cust 썼기 때문에 "" 이렇게 아무것도 안 쓰고 호출하면 /cust가 호출이 됨
     //127.0.0.1/cust
@@ -37,15 +42,17 @@ public class CustController {
         model.addAttribute("center",dir+"add");
         return "index";
     }
-    @RequestMapping("/all")
-    public String all(Model model) {
-        List<Cust> list = new ArrayList<>();
-        list.add(new Cust("id01", "pwd01", "james1"));
-        list.add(new Cust("id02", "pwd02", "james2"));
-        list.add(new Cust("id03", "pwd03", "james3"));
-        list.add(new Cust("id04", "pwd04", "james4"));
-        list.add(new Cust("id05", "pwd05", "james5"));
 
+    @RequestMapping("/all")
+    public String all(Model model) throws Exception {
+
+        List<Cust> list = new ArrayList<>();
+        try {
+            list = service.get();
+        }catch (Exception e){
+            log.info("----------------------에러");
+            e.printStackTrace();
+        }
         model.addAttribute("clist", list);
 
         model.addAttribute("left",dir+"left");

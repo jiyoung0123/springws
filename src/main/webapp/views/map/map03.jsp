@@ -15,7 +15,7 @@ c 로 쓰겠다는것, 그래서 밑에 c:out  으로 쓸 수 있음--%>
     init:function (){
       this.display()
       $('#s_btn').click(function (){
-        map03.go(37.5459099,  127.0545074,'s');
+        map03.go(37.5459099, 127.0545074,'s');
       });
       $('#b_btn').click(function (){
         map03.go(35.1938469, 129.1536102,'b')
@@ -23,6 +23,7 @@ c 로 쓰겠다는것, 그래서 밑에 c:out  으로 쓸 수 있음--%>
       $('#j_btn').click(function (){
         map03.go(33.5104135, 126.4913534,'j')
       });
+
     },
     display:function (){
       var mapContainer = document.querySelector('#map'); // 지도를 표시할 div
